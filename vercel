@@ -1,0 +1,65 @@
+import React, { useState } from "react";
+
+const javaTopics = [
+  { day: 1, topic: "Introduction to Java", description: "Learn about Java, its features, and installation.", time: "2 hours" },
+  { day: 2, topic: "Basic Syntax", description: "Understanding variables, data types, and operators.", time: "2.5 hours" },
+  { day: 3, topic: "Control Statements", description: "Learn about if-else, loops, and switch case.", time: "3 hours" },
+  { day: 4, topic: "Functions & Methods", description: "Defining and calling methods in Java.", time: "2.5 hours" },
+  { day: 5, topic: "OOP Basics", description: "Introduction to Object-Oriented Programming concepts.", time: "3 hours" },
+  { day: 6, topic: "Classes and Objects", description: "Creating and using classes and objects.", time: "3 hours" },
+  { day: 7, topic: "Constructors & Static Keyword", description: "Understanding constructors and static members.", time: "2 hours" },
+  { day: 8, topic: "Inheritance", description: "Learn about extending classes and method overriding.", time: "2.5 hours" },
+  { day: 9, topic: "Polymorphism", description: "Method overloading and method overriding.", time: "3 hours" },
+  { day: 10, topic: "Abstraction & Interfaces", description: "Abstract classes and interfaces in Java.", time: "2.5 hours" },
+  { day: 11, topic: "Encapsulation", description: "Data hiding and encapsulation principles.", time: "2 hours" },
+  { day: 12, topic: "Exception Handling", description: "Try-catch, throw, throws, and finally blocks.", time: "3 hours" },
+  { day: 13, topic: "File Handling", description: "Reading and writing files in Java.", time: "2.5 hours" },
+  { day: 14, topic: "Collections Framework", description: "Lists, Sets, Maps, and Queues.", time: "3 hours" },
+  { day: 15, topic: "Generics & Lambda Expressions", description: "Using generics and lambda functions.", time: "2 hours" },
+  { day: 16, topic: "Threads & Multithreading", description: "Concurrency and thread management.", time: "3 hours" },
+  { day: 17, topic: "Synchronization", description: "Thread safety and synchronization techniques.", time: "2.5 hours" },
+  { day: 18, topic: "Networking in Java", description: "Working with sockets and networking APIs.", time: "3 hours" },
+  { day: 19, topic: "JDBC & Database Connectivity", description: "Connecting Java with databases using JDBC.", time: "3 hours" },
+  { day: 20, topic: "Java 8 Features", description: "Streams, Optional, and new API updates.", time: "2 hours" },
+  { day: 21, topic: "Data Structures in Java", description: "Arrays, LinkedList, Stack, Queue, and HashMap.", time: "3.5 hours" },
+  { day: 22, topic: "Sorting & Searching Algorithms", description: "Bubble sort, merge sort, and binary search.", time: "3.5 hours" },
+  { day: 23, topic: "Recursion & Dynamic Programming", description: "Solving problems using recursion and DP.", time: "3.5 hours" },
+  { day: 24, topic: "Graph & Trees", description: "Graph traversal (BFS, DFS) and tree algorithms.", time: "4 hours" },
+  { day: 25, topic: "String Manipulation Problems", description: "Solving problems related to strings.", time: "3 hours" },
+  { day: 26, topic: "Greedy Algorithms", description: "Solving problems using greedy approaches.", time: "3 hours" },
+  { day: 27, topic: "Backtracking", description: "Understanding and implementing backtracking.", time: "3 hours" },
+  { day: 28, topic: "Bit Manipulation", description: "Using bitwise operators for problem solving.", time: "2.5 hours" },
+  { day: 29, topic: "System Design Basics", description: "Introduction to designing scalable systems.", time: "3 hours" },
+  { day: 30, topic: "Final Project & Review", description: "A hands-on project and revision of all topics.", time: "5 hours" }
+];
+
+export default function Java30Days() {
+  const [completed, setCompleted] = useState(Array(javaTopics.length).fill(false));
+
+  const toggleComplete = (index) => {
+    setCompleted((prev) => {
+      const newCompleted = [...prev];
+      newCompleted[index] = !newCompleted[index];
+      return newCompleted;
+    });
+  };
+
+  return (
+    <div className="p-5">
+      <h1 className="text-3xl font-bold text-center mb-5">30 Days Java Learning Program</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {javaTopics.map(({ day, topic, description, time }, index) => (
+          <div key={day} className="p-4 border rounded-lg shadow-lg bg-white">
+            <h2 className="text-xl font-semibold">Day {day}: {topic}</h2>
+            <p className="text-gray-600">{description}</p>
+            <p className="text-blue-600 font-medium">Time Required: {time}</p>
+            <label className="flex items-center mt-2">
+              <input type="checkbox" checked={completed[index]} onChange={() => toggleComplete(index)} className="mr-2" />
+              <span className={completed[index] ? "text-green-600 font-medium" : "text-gray-800"}>Completed</span>
+            </label>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
